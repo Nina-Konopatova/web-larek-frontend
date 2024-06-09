@@ -8,7 +8,7 @@ interface ISuccessPurchase {
 	onClick: (event: MouseEvent) => void; 
 }
 
-export class Success extends Component<TSuccess> {
+export class SuccessOrder extends Component<TSuccess> {
 	protected _close: HTMLElement; 
 	protected _successSum: HTMLElement; 
 

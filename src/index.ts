@@ -12,7 +12,7 @@ import { Modal } from './components/Modal';
 import { Basket, CardForBasket } from './components/Basket';
 import { AddressForm, ContactsForm } from './components/Form';
 import { IAddressForm, IContactsForm } from './types';
-import { Success } from './components/Success';
+import { SuccessOrder} from './components/Success';
 import { ApiListResponse } from './components/base/api';
 
 
@@ -41,7 +41,7 @@ const modal = new Modal(ensureElement<HTMLElement>('#modal-container'), events)	
 const basket = new Basket(cloneTemplate(basketTemplate), events);								// Создание экземпляра корзины
 const addressForm = new AddressForm(cloneTemplate(addressFormTemplate), events);				// Создание экземпляра формы адреса
 const contactsForm = new ContactsForm(cloneTemplate(contactsFormTemplate), events);   			// Создание экземпляра формы контактов
-const success = new Success(cloneTemplate(successTemplate), { onClick: () => modal.close() })	// Создание экземпляра формы успешного заказа
+const success = new SuccessOrder(cloneTemplate(successTemplate), { onClick: () => modal.close() })	// Создание экземпляра формы успешного заказа
 
 
 

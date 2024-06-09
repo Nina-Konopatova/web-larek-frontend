@@ -2,17 +2,11 @@ import { FormErrors, IAddressForm, IProdItem, IContactsForm, IOrderForm } from "
 import { Card } from "./Card"
 import { Model } from "./base/Model"
 
-
-
-
 export interface IStatusApp {
     catalog: IProdItem[];
     order: IOrderForm | null;
     formErrors: FormErrors;
 }
-
-
-
 
 export class StatusApp extends Model<IStatusApp> {
     catalog: IProdItem[];
@@ -42,27 +36,27 @@ export class StatusApp extends Model<IStatusApp> {
         return this.basket.length;
     }
 
-    // Метод для получения суммы цен всех товаров в корзине
+    // Получение суммы цен всех товаров в корзине
     getTotal() {
         return this.basket.reduce((sum, next) => sum + next.price, 0);
     }
 
-    // Метод для удаления товара из корзины
+    // Удаление товара из корзины
     removeBasket(id: string) {
         this.basket = this.basket.filter(item => item.id !== id)
     }
 
-    // Метод для полной очистки корзины
+    // Очистка корзины
     clearBasket() {
         this.basket.length = 0;
     }
 
-    // Метод для добавления ID товаров в корзине в поле items для order
+    // Добавление ID товаров 
     setItems() {
         this.order.items = this.basket.map(item => item.id)
     }
 
-    // Метод для установки данных способов оплаты и адреса при успешной валидации
+    // Установка данных способов оплаты и адреса при успешной валидации
     setOrderField(field: keyof IAddressForm, value: string): void {
         this.order[field] = value;
         if (this.validateOrderForm()) { }
@@ -80,7 +74,7 @@ export class StatusApp extends Model<IStatusApp> {
         this.events.emit('addressFormErrors:change', this.formErrors);
         return Object.keys(errors).length === 0;
     }
-    // Метод для заполнения полей email и телефон  
+    // Заполненияе полей email и телефон  
     setContactsField(field: keyof IContactsForm, value: string): void {
         this.order[field] = value;
         if (this.validateContact()) { }
@@ -99,7 +93,7 @@ export class StatusApp extends Model<IStatusApp> {
         return Object.keys(errors).length === 0;
     }
 
-    // Метод для сброса значений формы
+    // Сброс значений формы
     resetForm(): void {
         this.order = {
             items: [],
@@ -111,7 +105,7 @@ export class StatusApp extends Model<IStatusApp> {
         };
     }
 
-    // Метод для обновления поля selected во всех товарах после совершения покупки
+    // Обновление поля selected во всех товарах после совершения покупки
     resetSelected() {
         this.catalog.forEach(item => item.selected = false)
     }

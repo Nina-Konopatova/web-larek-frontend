@@ -50,3 +50,10 @@ export interface IOderResult {
 export type FormErrors = Partial<Record<keyof IOrderForm, string>>;
 
 export type TSuccess = Pick<IOderResult, 'total'>;
+
+export type TCardCategory =
+    | 'софт-скил'
+    | 'другое'
+    | 'хард-скил'
+    | 'дополнительное'
+    | 'кнопка';
